@@ -1,0 +1,22 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8081:80"
+    depends_on:
+      - mysql
+    environment:
+      DB_HOST: mysql
+      DB_USER: root
+      DB_PASS: root
+      DB_NAME: asena_actas
+
+  mysql:
+    image: mysql:8.0
+    container_name: asena_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: asena_actas
+    ports:
+      - "3307:3306"
